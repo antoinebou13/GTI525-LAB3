@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import * as Papa from 'papaparse';
 import { readFileSync } from 'fs';
+import mongoose from 'mongoose';
 
 @Injectable()
 export class AppService {
   constructor() { }
 
-  getHome(): string {
-    return 'Hello World!';
+  getHome(): Object[] {
+    return [
+      
+    ]
   }
 
   getCompteur(id: string, debut: number, fin: number) {
