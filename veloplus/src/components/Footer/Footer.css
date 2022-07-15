@@ -1,0 +1,12 @@
+.Footer {
+    border: double;
+    background : pink;
+}
+
+.coordonées{
+    font-family: Garamond, serif;
+    font-size: 95%;
+    font-style: oblique;
+    color: rgb(122, 14, 81);
+   
+}

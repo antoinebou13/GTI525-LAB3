@@ -1,0 +1,29 @@
+.retour {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+h4 {
+  margin-top: 40px;
+  margin-left: 20px;
+  position: absolute;
+  text-align: right;
+}
+.boutonRadio {
+  float: right;
+  display: block;
+  padding-right: 10%;
+  margin-top: 10px;
+}
+h5,
+h6 {
+  margin-top: 10px;
+  margin-left: 30%;
+}
+
+.StatisticsChart {
+  display: block;
+  width: inherit;
+  border: double;
+}

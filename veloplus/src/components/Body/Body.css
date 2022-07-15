@@ -1,0 +1,14 @@
+.Body {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+}
+.Nav {
+  width: 20%;
+}
+.Article {
+  min-width: 80%;
+  max-width: 80%;
+  min-height: 100%;
+  max-height: 100%;
+}

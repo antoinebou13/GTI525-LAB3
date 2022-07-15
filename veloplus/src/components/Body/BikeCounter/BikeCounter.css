@@ -1,0 +1,199 @@
+.BikeCounter {
+  width: inherit;
+  border: double;
+  /* overflow-y: scroll; */
+}
+h2 {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.TabComptageVelo {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+
+table td {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+
+.dropdown {
+  left: 10px;
+  list-style: none;
+  width: 100px;
+  border: 2px solid black;
+  border-radius: 5%;
+  background-color: #f4a5d6;
+}
+
+.dropdown li {
+  position: relative;
+}
+
+.dropdown li a {
+  color: #09010a;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.dropdown li ul {
+  position: absolute;
+  top: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  line-height: normal;
+  background-color: rgb(216, 144, 190);
+}
+
+.dropdown li ul li a {
+  text-align: left;
+  color: #0e0d0d;
+  font-size: 14px;
+  padding: 10px;
+  display: block;
+  white-space: nowrap;
+}
+
+.dropdown li ul li a:hover {
+  background-color: #e35999;
+  color: #ffffff;
+}
+
+.dropdown li ul li ul {
+  left: 100%;
+  top: 0;
+}
+
+ul li:hover > a {
+  background-color: #e35999;
+  color: #ffffff !important;
+}
+
+ul li:hover > ul {
+  display: block;
+}
+
+/* Faire un scroll avec 15 elems */
+.tabulation {
+  overflow: auto;
+  height: 850px;
+  width: 100%;
+}
+
+thead {
+  background-color: green;
+}
+
+thead,
+thead > tr {
+  position: sticky;
+  top: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.position {
+  position: relative;
+  width: 400px;
+}
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.btn-primary {
+  background-color: white;
+  border: none;
+}
+#map {
+  height: 500px;
+}
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-dialog {
+  max-width: 900px;
+}
