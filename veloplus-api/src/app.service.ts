@@ -7,10 +7,8 @@ import mongoose from 'mongoose';
 export class AppService {
   constructor() { }
 
-  getHome(): Object[] {
-    return [
-      
-    ]
+  getHome(): string{
+    return '';
   }
 
   getCompteur(id: string, debut: number, fin: number) {
