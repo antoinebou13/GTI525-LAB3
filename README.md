@@ -4,7 +4,7 @@
 cd velopuls
 npm install
 npm start
-``
+```
 
 ```bash
 cd veloplus-api
