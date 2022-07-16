@@ -1,14 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as Papa from 'papaparse';
 import { readFileSync } from 'fs';
-import mongoose from 'mongoose';
+import { Console } from 'console';
+import { parse } from 'path';
 
 @Injectable()
 export class AppService {
-  constructor() { }
+  constructor() {}
 
-  getHome(): string{
-    return '';
+  getHome(): string {
+    return 'Hello World!';
   }
 
   getCompteur(id: string, debut: number, fin: number) {
@@ -28,24 +29,35 @@ export class AppService {
       let finMonth = fin.toString().substring(4, 6);
       let finDay = fin.toString().substring(6, 8);
       let parseFin = new Date(finYear + '-' + finMonth + '-' + finDay);
-
-      if (debutYear != finYear) {
-        // lab 3
-        throw new Error('Debut et fin doivent etre dans le meme annee');
-      }
-
+      parseFin.setDate(parseFin.getDate() + 1);
+      parseFin.setHours(23);
       let compteurStats = this.getCounterStats(parseInt(debutYear));
 
       let compteurStatsFiltered = compteurStats.filter(
         (compteurStat) =>
           new Date(compteurStat.Date) >= parseDebut &&
-          new Date(compteurStat.Date) < parseFin,
+          new Date(compteurStat.Date) <= parseFin,
       );
 
       compteur.countTotal = this.generateCountTotal(id, compteurStatsFiltered);
-      compteur.countByDay = this.generateCountByDay(id, compteurStatsFiltered, parseDebut, parseFin);
-      compteur.countByMonth = this.generateCountbyMonth(id, compteurStatsFiltered, parseDebut, parseFin);
-      compteur.countByYear = this.generateCountByYear(id, compteurStatsFiltered, parseDebut, parseFin);
+      compteur.countByDay = this.generateCountByDay(
+        id,
+        compteurStatsFiltered,
+        parseDebut,
+        parseFin,
+      );
+      compteur.countByMonth = this.generateCountbyMonth(
+        id,
+        compteurStatsFiltered,
+        parseDebut,
+        parseFin,
+      );
+      compteur.countByYear = this.generateCountByYear(
+        id,
+        compteurStatsFiltered,
+        parseDebut,
+        parseFin,
+      );
     }
     return compteur;
   }
@@ -55,38 +67,64 @@ export class AppService {
       (acc, curr) => acc + curr[id],
       0,
     );
+    console.log('sum : ' + sumCounterStat);
     return sumCounterStat || 0;
   }
 
-  generateCountByDay(id: string, compteurStatsFiltered: any[], debut: Date, fin: Date): any[] {
-    let countByDay = []
+  generateCountByDay(
+    id: string,
+    compteurStatsFiltered: any[],
+    debut: Date,
+    fin: Date,
+  ): any[] {
+    let countByDay = [];
     let currentDate = debut;
+    fin.setHours(23);
+    fin.setMinutes(59);
+    fin.setDate(fin.getDate() - 1);
+    currentDate.setHours(23);
+    console.log('fin : ' + fin);
     while (currentDate < fin) {
-      let compteurStatDay = compteurStatsFiltered.filter(
-        (compteurStat) => new Date(compteurStat.Date).getDate() == currentDate.getDate()
-      )
-      let compteurStat = 0;
-      if (compteurStatDay.length > 0) {
-        compteurStat = this.generateCountTotal(id, compteurStatDay);
-      }
+      currentDate.setDate(currentDate.getDate() + 1);
 
+      console.log('curr: ' + currentDate);
+      let compteurStatDay = compteurStatsFiltered.filter(
+        (compteurStat) =>
+          new Date(compteurStat.Date).getDate() === currentDate.getDate() &&
+          new Date(compteurStat.Date).getMonth() === currentDate.getMonth() &&
+          new Date(compteurStat.Date).getFullYear() ===
+            currentDate.getFullYear(),
+      );
+      compteurStatDay.forEach((compteurStat) => {
+        let compteurStatDate = new Date(compteurStat.Date);
+        console.log(compteurStatDate);
+        //console.log('curr: ' + currentDate);
+      });
+      let compteurStat = 0;
+      compteurStat = this.generateCountTotal(id, compteurStatDay);
+      console.log('compte : ' + compteurStat);
+      currentDate.setDate(currentDate.getDate() - 1);
       countByDay.push({
         date: new Date(currentDate),
         count: compteurStat,
       });
-
       currentDate.setDate(currentDate.getDate() + 1);
     }
     return countByDay;
   }
 
-  generateCountbyMonth(id: string, compteurStatsFiltered: any[], debut: Date, fin: Date): any[] {
-    let countByMonth = []
+  generateCountbyMonth(
+    id: string,
+    compteurStatsFiltered: any[],
+    debut: Date,
+    fin: Date,
+  ): any[] {
+    let countByMonth = [];
     let currentDate = debut;
     while (currentDate < fin) {
       let compteurStatMonth = compteurStatsFiltered.filter(
-        (compteurStat) => new Date(compteurStat.Date).getMonth() == currentDate.getMonth()
-
+        (compteurStat) =>
+          new Date(compteurStat.Date).getMonth() == currentDate.getMonth(),
       );
       let compteurStat = 0;
       if (compteurStatMonth.length > 0) {
@@ -95,19 +133,25 @@ export class AppService {
       countByMonth.push({
         date: new Date(currentDate),
         count: compteurStat,
-      }
-      )
+      });
       currentDate.setMonth(currentDate.getMonth() + 1);
     }
     return countByMonth;
   }
 
-  generateCountByYear(id: string, compteurStatsFiltered: any[], debut: Date, fin: Date): any[] {
-    let countByYear = []
+  generateCountByYear(
+    id: string,
+    compteurStatsFiltered: any[],
+    debut: Date,
+    fin: Date,
+  ): any[] {
+    let countByYear = [];
     let currentDate = debut;
     while (currentDate < fin) {
       let compteurStatYear = compteurStatsFiltered.filter(
-        (compteurStat) => new Date(compteurStat.Date).getFullYear() == currentDate.getFullYear()
+        (compteurStat) =>
+          new Date(compteurStat.Date).getFullYear() ==
+          currentDate.getFullYear(),
       );
       let compteurStat = 0;
       if (compteurStatYear.length > 0) {
@@ -116,8 +160,7 @@ export class AppService {
       countByYear.push({
         date: new Date(currentDate),
         count: compteurStat,
-      }
-      )
+      });
       currentDate.setFullYear(currentDate.getFullYear() + 1);
     }
     return countByYear;
@@ -305,7 +348,7 @@ export class AppService {
       console.log(
         '       Time:',
         end - start ||
-        '(Unknown; your browser does not support the Performance API)',
+          '(Unknown; your browser does not support the Performance API)',
         'ms',
       );
       console.log('  Row count:', rowCount);
