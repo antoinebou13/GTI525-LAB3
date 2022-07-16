@@ -3,15 +3,13 @@ import * as Papa from 'papaparse';
 import { readFileSync } from 'fs';
 import { Console } from 'console';
 import { parse } from 'path';
-import createPointInteretDto from './db/dto/createPointInteret.dto';
-import { PointInteretService } from './db/services/pointinterets.service';
 
 @Injectable()
 export class AppService {
-  constructor(private pointInteretService: PointInteretService) {}
+  constructor() {}
 
   getHome(): string {
-    return 'VeloPlus API';
+    return 'Hello World!';
   }
 
   getCompteur(id: string, debut: number, fin: number) {
@@ -92,7 +90,6 @@ export class AppService {
     debut: Date,
     fin: Date,
   ): any[] {
-    // TODO merge with the changes of kamil
     let countByDay = [];
     let currentDate = debut;
     fin.setHours(23);
@@ -135,7 +132,6 @@ export class AppService {
     debut: Date,
     fin: Date,
   ): any[] {
-    // TODO merge with the changes of kamil
     let countByMonth = [];
     let currentDate = debut;
     while (currentDate < fin) {
@@ -162,7 +158,6 @@ export class AppService {
     debut: Date,
     fin: Date,
   ): any[] {
-    // TODO merge with the changes of kamil
     let countByYear = [];
     let currentDate = debut;
     while (currentDate < fin) {
