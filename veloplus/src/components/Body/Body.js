@@ -2,6 +2,7 @@ import { Component } from "react";
 import BikeCounter from "./BikeCounter/BikeCounter";
 import PointsInteret from "./PointsInteret/PointsInteret";
 import StatisticsChart from "./StatisticsChart/StatisticsChart";
+import AjoutPointInteret from "./AjoutPointInteret/AjoutPointInteret";
 import Nav from "./Nav/Nav";
 import "./Body.css";
 
@@ -12,6 +13,7 @@ class Body extends Component {
       displayBikeCounter: false,
       displayPointsInteret: false,
       displayStatisticsChart: false,
+      displayAjoutPointInterets: false,
       dateDepart: "",
       dateArrivee: "",
       currentId: -1,    // id du compteur sélectionné 
@@ -28,6 +30,7 @@ class Body extends Component {
     this.setState({
       displayPointsInteret: false,
       displayStatisticsChart: false,
+      displayAjoutPointInterets: false,
     });
   };
   setDisplayPointsInteret = () => {
@@ -38,6 +41,7 @@ class Body extends Component {
     this.setState({
       displayBikeCounter: false,
       displayStatisticsChart: false,
+      displayAjoutPointInterets: false,
     });
   };
 
@@ -49,6 +53,20 @@ class Body extends Component {
     this.setState({
       displayBikeCounter: false,
       displayPointsInteret: false,
+      displayAjoutPointInterets: false,
+    });
+  };
+
+  setDisplayAjoutPointInterets = () => {
+    console.log("ici changement points int");
+    this.setState({
+      displayAjoutPointInterets: true,
+    });
+    this.setState({
+      displayBikeCounter: false,
+      displayPointsInteret: false,
+      displayStatisticsChart: false,
+
     });
   };
 
@@ -91,6 +109,7 @@ class Body extends Component {
           dateArrivee={this.state.dateArrivee}
           currentId={this.state.currentId}
         />
+        <AjoutPointInteret display={this.state.DisplayAjoutPointInterets} setDisplayAjoutPointInterets={this.setDisplayAjoutPointInterets}></AjoutPointInteret>
       </div>
     );
   }

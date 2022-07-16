@@ -1,5 +1,7 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import CreatePointInteretDto from './db/dto/createPointInteret.dto';
+import { Fontaine } from './db/schemas/pointinteret.schema';
 
 
 @Controller('/gti525/v1/')
@@ -25,6 +27,7 @@ export class AppController {
     sortDirection = sortDirection || 'asc';
     return this.appService.getAllFontaines(key, sortDirection);
   }
+
   @Get(['fontaine/:id'])
   getFontaine(@Param('id') id: string) {
     return this.appService.getFontaine(id);
@@ -34,7 +37,11 @@ export class AppController {
   getCompteur(@Param('id') id: string, @Query('debut') debut: number, @Query('fin') fin: number) {
     return this.appService.getCompteur(id, debut, fin);
   }
-  
 
-
+  @Post(['pointsdinteret'])
+  createCompteur(@Headers() headers, @Body() pointInteret: CreatePointInteretDto) {
+    if (headers.token === 'secret') {
+      return this.appService.createPointInteret(pointInteret);
+    }
+  }
 }
