@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Headers, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
-import CreatePointInteretDto from './db/dto/createPointInteret.dto';
 
 
 @Controller('/gti525/v1/')
@@ -37,11 +36,11 @@ export class AppController {
     return this.appService.getCompteur(id, debut, fin);
   }
 
-  @Post(['pointsdinteret'])
+  /*@Post(['pointsdinteret'])
   createCompteur(@Headers() headers, @Body() pointInteret: CreatePointInteretDto) {
     // TODO
     // if (headers.token === 'secret') {
     //   return this.appService.createPointInteret(pointInteret);
     // }
-  }
+  }*/
 }

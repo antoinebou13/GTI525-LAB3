@@ -2,13 +2,13 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Compteurs {
-  @PrimaryColumn({ precision: 15 })
+  @PrimaryColumn({name:'ID', precision: 15 })
   ID: number;
-  @Column({ nullable: true })
+  @Column({name:'Ancien_ID', nullable: true })
   Ancien_ID: number;
-  @Column()
+  @Column({name:'Nom'})
   Nom: string;
-  @Column()
+  @Column({name: 'Statut'})	
   Statut: string;
   @Column({ name: 'Latitude', type: 'decimal', precision: 20, scale: 14 })
   Latitude: number;

@@ -3,6 +3,7 @@ import "./AjoutPointInteret.css";
 
 class AjoutPointInteret extends Component {
     constructor(props) {
+        //@todo ajouter date
         super(props);
         this.state = {
         };
@@ -44,6 +45,7 @@ class AjoutPointInteret extends Component {
                     <label htmlFor="exampleFormControlInput1">Remarque</label>
                     <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Remarque" />
                 </div>
+
             </form>
         ): (
             <div />
