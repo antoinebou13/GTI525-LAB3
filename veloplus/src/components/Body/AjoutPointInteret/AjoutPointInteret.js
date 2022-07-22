@@ -5,14 +5,12 @@ class AjoutPointInteret extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         };
-        this.handleClick = this.handleClick.bind(this);
     }
     componentDidMount() {
     }
     render() {
-        return (
+        return this.props.display ? (
             <form method="POST">
                 <div className="form-group">
                     <label htmlFor="exampleFormControlInput1">Nom</label>
@@ -47,7 +45,9 @@ class AjoutPointInteret extends Component {
                     <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Remarque" />
                 </div>
             </form>
-        );
+        ): (
+            <div />
+        )
     }
 }
 

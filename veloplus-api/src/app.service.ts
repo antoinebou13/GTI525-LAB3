@@ -27,7 +27,7 @@ export class AppService {
     //   );
     //   return compteurStats;
     // }
-    );
+    // );
 
     const compteur = parseFile.data.find(
       (compteur) => parseInt(compteur.ID) == parseInt(id),
@@ -184,7 +184,7 @@ export class AppService {
     return countByYear;
   }
 
-  getAllCompteurs(key: string, sortDirection: string) {\
+  getAllCompteurs(key: string, sortDirection: string) {
     // TODO change to db
     const csvFilePath = __dirname + '/assets/compteurs/compteurs.csv';
     const parseFile = this.parseCSV(csvFilePath);
@@ -230,10 +230,10 @@ export class AppService {
     return fontaine;
   }
 
-  createPointInteret(pointInteret: createPointInteretDto) {
-    return this.
-
-  }
+  // TODO
+  // createPointInteret(pointInteret: createPointInteretDto) {
+    // return this.pointInteretService.createPointInteret(pointInteret);
+  // }
 
   sortCompteurs(data: any[], key: string, sortDirection: string) {
     let sortTypeCompteurs = {

@@ -109,7 +109,7 @@ class Body extends Component {
           dateArrivee={this.state.dateArrivee}
           currentId={this.state.currentId}
         />
-        <AjoutPointInteret display={this.state.DisplayAjoutPointInterets} setDisplayAjoutPointInterets={this.setDisplayAjoutPointInterets}></AjoutPointInteret>
+        <AjoutPointInteret display={this.state.displayAjoutPointInterets} setDisplayAjoutPointInterets={this.setDisplayAjoutPointInterets}></AjoutPointInteret>
       </div>
     );
   }
