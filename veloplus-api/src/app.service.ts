@@ -179,8 +179,7 @@ export class AppService {
     return countByYear;
   }
 
-  getAllCompteurs(key: string, sortDirection: string) {
-    // TODO change to db
+  getAllCompteurs(key: string, sortDirection: string, limite: number) {
     const csvFilePath = __dirname + '/assets/compteurs/compteurs.csv';
     const parseFile = this.parseCSV(csvFilePath);
     this.sortCompteurs(parseFile.data, key, sortDirection);

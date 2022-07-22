@@ -14,10 +14,10 @@ export class AppController {
   }
   
   @Get(['/compteurs'])
-  getCompteurs(@Query('key') key: string, @Query('sortDirection') sortDirection: string) {
+  getCompteurs(@Query('key') key: string, @Query('sortDirection') sortDirection: string, @Query('limite' )limite: number) {
     key = key || 'ID';
     sortDirection = sortDirection || 'asc';
-    return this.appService.getAllCompteurs(key, sortDirection);
+    return this.appService.getAllCompteurs(key, sortDirection, limite);
   }
 
   @Get(['/fontaines'])
@@ -32,7 +32,7 @@ export class AppController {
     return this.appService.getFontaine(id);
   }
 
-  @Get(['compteurs/:id'])
+  @Get(['compteurs/:id','compteurs/:id/passages'])
   getCompteur(@Param('id') id: string, @Query('debut') debut: number, @Query('fin') fin: number) {
     return this.appService.getCompteur(id, debut, fin);
   }
